@@ -1,4 +1,4 @@
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, Link, StaticQuery } from 'gatsby'
 import React from 'react'
 import Layout from '../components/Layout'
 
@@ -9,6 +9,9 @@ const getMarkdownPosts = graphql`
       totalCount
       edges {
         node {
+            fields {
+                slug
+            }
           id
           frontmatter {
             title
@@ -33,7 +36,9 @@ export default () => (
                         <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
                         {data.allMarkdownRemark.edges.map(({ node }) => (
                             <div key={node.id}>
-                                <h3>{node.frontmatter.title} <span style={{ color: '#bbb' }}>- {node.frontmatter.date}</span>
+                                <h3>
+                                    <Link to={`/posts${node.fields.slug}`}>{node.frontmatter.title}</Link>
+                                    <span style={{ color: '#bbb' }}>- {node.frontmatter.date}</span>
                                 </h3>
                                 <p>{node.excerpt}</p>
                             </div>
