@@ -5,8 +5,9 @@ const PostTemplate = ({ data: post }) => (
     <Layout>
         <div>
             <h1>{post.markdownRemark.frontmatter.title}</h1>
-            <h4>{post.markdownRemark.timeToRead + ' min read'}</h4>
-            <div dangerouslySetInnerHTML={{ __html: post.html }} />
+            <h4>{post.markdownRemark.timeToRead + ' min read'}
+            </h4>
+            <div dangerouslySetInnerHTML={{ __html: post.markdownRemark.html }} />
         </div>
     </Layout>
 )

@@ -4,8 +4,7 @@ module.exports = {
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `David Hahn`,
     createdAt: 2019,
-  },
-  plugins: [
+  }, plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -19,10 +18,19 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-images'
-          }
-        ]
-      }
+            resolve: 'gatsby-remark-relative-images',
+          },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -46,7 +54,7 @@ module.exports = {
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    // To learn more, visit: https://gatsby.app/offline
+    // 'gatsby-plugin-offline',
   ],
 }
