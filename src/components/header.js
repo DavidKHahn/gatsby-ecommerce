@@ -1,4 +1,5 @@
 import { Link } from "gatsby"
+import netlifyIdentity from 'netlify-identity-widget'
 import PropTypes from "prop-types"
 import React from "react"
 import gatsbyLogo from '../images/gatsby-icon.png'
@@ -9,7 +10,16 @@ const isActive = ({ isCurrent }) => {
 
 const NavLink = props => <Link getProps={isActive} {...props} />
 
-const Header = ({ siteTitle }) => (
+class Header extends React.Component {
+  componentDidMount() {
+    netlifyIdentity.init()
+  }
+
+  render() {
+    const { siteTitle } = this.props
+
+
+  return (
   <header
     style={{
       background: `rebeccapurple`,
@@ -48,6 +58,8 @@ const Header = ({ siteTitle }) => (
 
     <NavLink to="/products">Store</NavLink>
 
+    <div data-netlify-identity-menu />
+
 
     {/* Shopping Cart Summary */}
     <div style={{ color: 'white', cursor: 'pointer' }}className="snipcart-summary snipcart-checkout">
@@ -59,7 +71,7 @@ const Header = ({ siteTitle }) => (
     </div>
     </div>
   </header>
-)
+)}}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
