@@ -3,6 +3,11 @@ import PropTypes from "prop-types"
 import React from "react"
 import gatsbyLogo from '../images/gatsby-icon.png'
 
+const isActive = ({ isCurrent }) => {
+  return { className: isCurrent ? 'active' : 'navlink' }
+}
+
+const NavLink = props => <Link getProps={isActive} {...props} />
 
 const Header = ({ siteTitle }) => (
   <header
@@ -35,17 +40,14 @@ const Header = ({ siteTitle }) => (
         }}
       />
       <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
+        <NavLink to="/">{siteTitle}</NavLink>
       </h1>
     </span>
+
+    <NavLink to="/blog">Blog</NavLink>
+
+    <NavLink to="/products">Store</NavLink>
+
 
     {/* Shopping Cart Summary */}
     <div style={{ color: 'white', cursor: 'pointer' }}className="snipcart-summary snipcart-checkout">
